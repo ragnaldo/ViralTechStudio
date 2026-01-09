@@ -6,15 +6,22 @@ export enum ContentType {
   SECURITY_ALARM = 'SECURITY_ALARM'
 }
 
+export interface ScriptScene {
+  visual: string;
+  audio: string;
+  isStaticImage: boolean; // Indica se esta cena deve usar uma imagem gerada ou um vídeo de referência
+  imageIndex?: number;    // Índice da imagem correspondente no array generatedImages
+}
+
 export interface VideoScript {
   title: string;
   hook: string;
-  body: string;
+  scenes: ScriptScene[];
   cta: string;
   estimatedDuration: string;
-  visualCues: string[];
   viralScore: number;
   wordCount: number;
+  referenceLinks: string[]; // Links para vídeos/artigos que servem de base para o remix
   backgroundImagesPrompts: string[];
   generatedImages?: string[];
 }
